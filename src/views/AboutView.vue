@@ -1,15 +1,16 @@
+<script>
+import swal from 'sweetalert';
+export default {
+  methods: {
+    flash(message) {
+      swal(message);
+    },
+  },
+};
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <button @click="flash('it works on the About page')">Click me</button>
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
