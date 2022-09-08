@@ -1,5 +1,4 @@
 <script setup>
-import { ref, watch } from "vue";
 // import re-usable composable "useStorage"
 import { useStorage } from "@/composables/useStorage";
 
@@ -7,12 +6,15 @@ import { useStorage } from "@/composables/useStorage";
 // 'useStorage' looks for a key 'food' in a local storage API, if it finds it, it returns it and maybe it return as a ref too
 // This way we can instantly use it within <input>
 // set default value 'salad'
-let food = useStorage('food', 'salad');
+let food = useStorage('food', 'tacos');
+let age = useStorage('age', 10);
 </script>
 <template>
   <main>
     <!-- We want to save typed values into a local storage -->
     <p>What is your favorite food?</p>
     <input type="text" v-model="food">
+    <p>How old are you?</p>
+    <input type="text" v-model="age">
   </main>
 </template>
