@@ -17,10 +17,12 @@ export function useStorage(key, val = null) {
 
   // Ultimately I want to return a ref to an user
   // write to local storage using 'watch' API to make local storage updated, keep an eye on v-model
-  watch(val, write);
+  // set a "deep watcher" to track changes in child properties in nested objects, for example, if they do, I want to call a write() function
+  // it can have a performance penalty, if you are dealing with a gigantic object
+  watch(val, write, { deep: true });
 
   function read() {
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key));
   }
 
   // since we already have 'key' and 'value' we don't need to explicetly use them as in write(key, val)
@@ -33,7 +35,7 @@ export function useStorage(key, val = null) {
     } else {
       // a function writes a value back to local storage
       // for serialization use JSON.stringify
-      localStorage.setItem(key, val.value);
+      localStorage.setItem(key, JSON.stringify(val.value));
     }
   }
 

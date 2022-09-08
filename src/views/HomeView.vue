@@ -8,6 +8,8 @@ import { useStorage } from "@/composables/useStorage";
 // set default value 'salad'
 let food = useStorage('food', 'tacos');
 let age = useStorage('age', 10);
+// to track changes in nested objects
+useStorage('obj', {one: 'one'});
 </script>
 <template>
   <main>
