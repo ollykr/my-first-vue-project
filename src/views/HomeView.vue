@@ -1,33 +1,18 @@
 <script setup>
-// set up reactive properties
-// 'watch' to make local storage' values updated when input's value is changed
 import { ref, watch } from "vue";
-// default to empty string
-let food = ref(localStorage.getItem("food"));
-let age = ref(localStorage.getItem("age"));
+// import re-usable composable "useStorage"
+import { useStorage } from "@/composables/useStorage";
 
-watch(food, (val) => {
-  write("food", val);
-});
-watch(age, (val) => {
-  write("age", val);
-});
-
-function write(key, val) {
-  localStorage.setItem(key, val);
-}
-
-setTimeout(() => {
-  food.value = "changed";
-}, 2000);
+// I want to use storage for food and I catch it in 'food' variable
+// 'useStorage' looks for a key 'food' in a local storage API, if it finds it, it returns it and maybe it return as a ref too
+// This way we can instantly use it within <input>
+// set default value 'salad'
+let food = useStorage('food', 'salad');
 </script>
 <template>
   <main>
     <!-- We want to save typed values into a local storage -->
     <p>What is your favorite food?</p>
-    <input type="text" v-model="food" />
-
-    <p>How old are you?</p>
-    <input type="text" v-model="age" />
+    <input type="text" v-model="food">
   </main>
 </template>
