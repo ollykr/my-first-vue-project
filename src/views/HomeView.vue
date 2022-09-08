@@ -1,11 +1,22 @@
 <script setup>
-// use composable
-import { useFlash } from "@/composables/useFlash";
-let { flash } = useFlash(); /* returns an object with a key "flash" */
+// set up reactive properties
+import { ref } from "vue";
+// default to empty string
+let food = ref(localStorage.getItem("food"));
+let age = ref(localStorage.getItem("age"));
+
+function write(key, val) {
+  localStorage.setItem(key, val);
+}
 </script>
 <template>
   <main>
-    <!-- flash() comes from mixins but it is not obvious, especially, if we have lots of components using mixins so that's why it is frown upon -->
-    <button @click="flash('test', 'it works')">Click me</button>
+    <!-- We want to save typed values into a local storage -->
+    <p>What is your favorite food?</p>
+    <!-- When a user types in it, let's use "write" function -->
+    <input type="text" v-model="food" @input="write('food', food)" name="" id="" />
+    <p>How old are you?</p>
+    <!-- When a user types in it, let's use "write" function -->
+    <input type="text" v-model="age" @input="write('age', age)" name="" id="" />
   </main>
 </template>
