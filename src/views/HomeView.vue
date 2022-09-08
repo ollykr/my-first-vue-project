@@ -1,12 +1,18 @@
 <script>
-// use mixin
-import flash from "@/mixins/flash";
+// use composable
+import {useFlash} from "@/composables/useFlash";
 
 // export an object
 
 export default {
-  // I can provide an array of mixins
-  mixins: [flash],
+//  setup method (as per Composition API)
+setup() {
+  // trigger function
+let { flash } = useFlash(); /* returns an object with a key "flash" */
+// return here is exactly as data() method
+return { flash };
+}
+
 };
 </script>
 <template>
