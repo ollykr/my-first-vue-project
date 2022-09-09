@@ -1,22 +1,36 @@
 <script setup>
-// import re-usable composable "useStorage"
-import { useStorage } from "@/composables/useStorage";
+import { onMounted, ref } from "vue";
+let textarea = ref(null);
 
-// I want to use storage for food and I catch it in 'food' variable
-// 'useStorage' looks for a key 'food' in a local storage API, if it finds it, it returns it and maybe it return as a ref too
-// This way we can instantly use it within <input>
-// set default value 'salad'
-let food = useStorage('food', 'tacos');
-let age = useStorage('age', 10);
-// to track changes in nested objects
-useStorage('obj', {one: 'one'});
+onMounted(() => {
+  textarea.value.addEventListener("keydown", (e) => {
+    let t = textarea.value;
+    // tab was pressed
+    if (e.keyCode === 9) {
+      // get caret position/selection
+      let val = t.value,
+        start = t.selectionStart,
+        end = t.selectionEnd;
+
+      // set textarea value to: text before caret + tab + text after caret
+
+      t.value = val.substring(0, start) + "\t" + val.substring(end);
+
+      // put caret at right position again
+      t.selectionStart = t.selectionEnd = start + 1;
+      e.preventDefault();
+    }
+  });
+});
 </script>
 <template>
   <main>
-    <!-- We want to save typed values into a local storage -->
-    <p>What is your favorite food?</p>
-    <input type="text" v-model="food">
-    <p>How old are you?</p>
-    <input type="text" v-model="age">
+    <form action="">
+      <!-- use "ref" to access any DOM element -->
+      <textarea ref="textarea" style="width: 100%; height: 300px">
+  Hi There!
+</textarea
+      >
+    </form>
   </main>
 </template>
