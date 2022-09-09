@@ -1,9 +1,11 @@
 <script setup>
+
 import { onMounted, ref } from "vue";
+
 let textarea = ref(null);
 
-onMounted(() => {
-  textarea.value.addEventListener("keydown", (e) => {
+
+function onKeyDown(e) {
     let t = textarea.value;
     // tab was pressed
     if (e.keyCode === 9) {
@@ -20,14 +22,17 @@ onMounted(() => {
       t.selectionStart = t.selectionEnd = start + 1;
       e.preventDefault();
     }
-  });
-});
+};
 </script>
 <template>
   <main>
     <form action="">
       <!-- use "ref" to access any DOM element -->
-      <textarea ref="textarea" style="width: 100%; height: 300px">
+      <textarea
+        ref="textarea"
+        @keydown="onKeyDown"
+        style="width: 100%; height: 300px"
+      >
   Hi There!
 </textarea
       >
