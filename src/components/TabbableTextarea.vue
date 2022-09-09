@@ -1,12 +1,8 @@
-<template>
-  <!-- .prevent is  the same as e.preventDefault() -->
-  <textarea
-    @keydown.tab.prevent="onTabPress">
-</textarea
-  >
-</template>
-
 <script setup>
+// defineProps macro
+defineProps({
+modelValue: String
+});
 function onTabPress(e) {
   let textarea = e.target;
 
@@ -19,3 +15,9 @@ function onTabPress(e) {
   textarea.selectionStart = textarea.selectionEnd = start + 1;
 }
 </script>
+
+<template>
+  <!-- .prevent is  the same as e.preventDefault() -->
+  <!-- Use "modelValue" prop via v-text="modelValue" -->
+  <textarea @keydown.tab.prevent="onTabPress" v-text="modelValue" />
+</template>
