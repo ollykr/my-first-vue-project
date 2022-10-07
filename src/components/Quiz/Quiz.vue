@@ -15,9 +15,14 @@ import QuizQuestion from "@/components/Quiz/QuizQuestion.vue";
 
 import QuizFooter from "@/components/Quiz/QuizFooter.vue";
 
-import {provide} from "vue";
+import {provide, ref} from "vue";
 
 defineProps({ quiz: Object });
+
+// For reactive data
+let name = ref('John Doe');
+
 // Component provides a value accessible by "children/grandchildren" components, we don't need to drill down to them
-provide('key', 'Hello There!');
+// second paramether - name is not just "John Doe", it is a reactive object
+provide('name', name);
 </script>
