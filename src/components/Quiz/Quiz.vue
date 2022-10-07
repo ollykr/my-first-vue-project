@@ -3,7 +3,7 @@
 
 <QuizQuestion />
 
-<QuizFooter :quiz="quiz"/>
+<QuizFooter />
 </template>
 
 <script setup>
@@ -13,12 +13,8 @@ import QuizHeader from "@/components/Quiz/QuizHeader.vue";
 import QuizQuestion from "@/components/Quiz/QuizQuestion.vue";
 
 import QuizFooter from "@/components/Quiz/QuizFooter.vue";
+// Import state stored in an external file
+import { state } from "@/stores/quizStore";
 
-import {provide} from "vue";
-
-// Quiz needs to be available in QuizFooterLinks nested child component
-let props = defineProps({ quiz: Object });
-
-provide('quiz', props.quiz);
 
 </script>
