@@ -12,8 +12,8 @@ import HelloWorld from "./components/HelloWorld.vue";
         <!-- we can use <a href=""..> </a> instead but it will do full page refresh once you click on the link  -->
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/contact">Contact</RouterLink>
         <RouterLink to="/counter">Counter</RouterLink>
+        <RouterLink to="/contact">Contact</RouterLink>
       </nav>
     </div>
   </header>
