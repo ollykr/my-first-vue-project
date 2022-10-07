@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!-- spit up a value -->
-        <h5>{{ name }}</h5>
+        <!-- When you click on me, I wanna call 'changeName' function from a parent - Quiz.vue -->
+        <button @click="changeName">{{ name }}</button>
 
     <ul>
         <li><a href="#">Get a Job</a></li>
@@ -14,12 +14,10 @@
 import {inject} from "vue";
 
 defineProps({ quiz: Object });
+// Accept parent's changeName function
+let { name, changeName } = inject('name');
 
-let name = inject('name');
+// Triggering a change set up on a parent via function here
 
-// Since the data is reactive , we can test it using a Timeout, a new name is reflected in a parent as well since it is a reactive data
-setTimeout(() => {
-    name.value = 'A New Name';
-}, 2000);
 
 </script>

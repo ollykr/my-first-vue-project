@@ -24,5 +24,14 @@ let name = ref('John Doe');
 
 // Component provides a value accessible by "children/grandchildren" components, we don't need to drill down to them
 // second paramether - name is not just "John Doe", it is a reactive object
-provide('name', name);
+
+// The only place you can change a data is in parent - this is a rule, that's why we use an object as a second paramether
+// function 'changeName' is responsible for changing a name
+// name, means key and value are the same - 'name'
+// If we want to trigger a change , we just need to pass a reference to the function in a child
+provide('name', {
+    name,
+changeName: () => name.value = 'Changed'
+
+});
 </script>
