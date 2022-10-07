@@ -20,13 +20,6 @@ function onTabPress(e) {
   textarea.selectionStart = textarea.selectionEnd = start + 1;
 }
 
-function update(e) {
-  // in Options API we emit like this - this.$emit('update:modelValue', 'whateverstringis')
-  // with <script setup> we can't do above
-
-  // Composition API
-  emit("update:modelValue", e.target.value);
-}
 </script>
 
 <template>

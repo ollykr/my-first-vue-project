@@ -1,16 +1,10 @@
 <script setup>
-import TabbableTextarea from "@/components/TabbableTextarea.vue";
-
-import { ref } from "vue";
-
-let comment = ref('test value');
-
+import Quiz from "@/components/Quiz/Quiz.vue";
 </script>
 <template>
   <main>
-    <form action="">
-      <!-- Track input of this textarea -->
-      <TabbableTextarea v-model="comment" style="width: 100%; height: 300px;" />
-    </form>
+    <!-- Passing Quiz object (:quiz) to a component -->
+    <!-- In real life we will be fetching it from a server -->
+<Quiz :quiz="{ name: 'My First Quiz', questions: [] }" />
   </main>
 </template>
